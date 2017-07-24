@@ -1,0 +1,15 @@
+*Abot* has just been added to this team. It is a simple way to provide honest and *anonymous* feedback to other team members. From now on you use an `/abot` slash command.
+
+Usage:
+
+`/abot #channel_name message content` - anonymous channel message
+`/abot @user_name message content` - anonymous direct message
+
+Eg.
+
+`/abot #general Last meeting was toooo long :(`
+`/abot @tom I know what you did last summer.`
+
+`/abot help` - display help
+
+Visit https://bot-anonymous.herokuapp.com to find out more.

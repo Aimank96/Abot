@@ -1,0 +1,37 @@
+.container.top-offset-30
+  - flash_messages
+  .row
+    = link_to "Home", root_path, class: "btn btn-success no-underline bright-color"
+  .row
+    .col-lg-6.col-sm-12
+      div.dropin-container
+      div class="spinner js-spinner"
+
+      div class="js-user-details is-hidden"
+        div class="form-group row"
+          small class="form-text text-muted col-lg-12" We will only use your data to process the payment, and send a receipt. No one from your Slack team will know that is was you how purchased Abot.
+        div class="form-group row"
+          label class="col-lg-4 col-form-label" First Name*
+          div class="col-lg-8 "
+            input class="form-control js-input-first-name" type="text" placeholder="John"
+        div class="form-group row"
+          label class="col-lg-4 col-form-label" Last Name*
+          div class="col-lg-8 "
+            input class="form-control js-input-last-name" type="text" placeholder="Doe" id="example-text-input"
+        div class="form-group row"
+          label class="col-lg-4 col-form-label" Full Address*
+          div class="col-lg-8"
+            input class="form-control js-input-address" type="text" placeholder="Your Street, Postcode, City, Country"
+        div class="form-group row"
+          label class="col-lg-4 col-form-label" Email Address*
+          div class="col-lg-8"
+            input class="form-control js-input-email" type="email" placeholder="name@example.com"
+        div class="form-group row"
+          div.col-lg-8
+            button disabled='true' class="btn btn-success braintree-submit-button js-payment-button" Pay #{Subscription::PRICE_READABLE} for unlimited access
+            span.greyish-color< VAT incl.
+  .row.top-offset-30.bottom-offset-30
+    .col-lg-6.col-sm-12
+      a href="https://www.braintreegateway.com/merchants/#{@braintree_id}/verified" target="_blank"
+        img src="https://s3.amazonaws.com/braintree-badges/braintree-badge-wide-light.png" width="280px" height ="44px" border="0"
+

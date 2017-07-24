@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+a.no-underline {
+  text-decoration: none;
+}
+
+a.bright-color {
+  color: #FFFFFF;
+}
+
+.greyish-color {
+  color: #999 !important;
+}
+
+a.btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.spinner {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #000000; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite;
+    margin: 10px 10px 10px 60px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.is-hidden {
+  display: none;
+}
+
+.top-offset-30 {
+  margin-top: 30px;
+}
+
+.bottom-offset-30 {
+  margin-bottom: 30px;
+}
+
+.input-error {
+  border-color: red;
+}

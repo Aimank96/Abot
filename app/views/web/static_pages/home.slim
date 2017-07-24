@@ -1,0 +1,72 @@
+.container
+  - flash_messages
+  .header.clearfix
+    h2.text-muted Abot
+  .jumbotron
+    h2.display-3 Anonymous Feeback for Slack Teams
+    p Yet another never-ending meeting? Coworker’s habits keep annoying you? You would like to share your thoughts but don’t want to step out as the troublemaker?
+    p
+     b> Abot
+     span> to the rescue! It provides a simple command allowing you to submit an
+     b> honest
+     span> and
+     b> anonymous
+     | feedback.
+    - if @current_user
+      p
+        span> Abot is already added to your Slack.
+        span> Just type
+        b "/abot"
+        span< in your Slack console to start using it.
+      p = @team.access_text
+      p
+        = link_to "Sign out", web_session_path, method: :delete, class: "btn btn-lg btn-success no-underline bright-color"
+        - unless @current_user.has_access?
+          = link_to "Purchase", new_web_subscription_path, class: "btn btn-lg btn-success no-underline bright-color"
+    - else
+      p You can start using Abot without paying for 30 days and see how it affects your team's communication. No credit card required or strings attached.
+      p
+        span If after the trial period you decide Abot is beneficial for your team you can purchase it
+        b< anonymously
+        span< for #{Subscription::PRICE_READABLE}
+        span< one-time payment for
+        span< the whole team.
+      p.text-center
+        a href="#{@add_to_slack_url}"
+          img alt="Add to Slack" height="60" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x), https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" width="209"
+  .row.text-center
+    .col-lg-3.col-sm-0
+    .col-lg-6.col-sm-12
+      = image_tag("abot-logo.png", width: "90%")
+    .col-lg-3.col-sm-0
+  .row.text-center
+    .col-lg-1.col-sm-0
+    .col-lg-10.col-sm-12
+      = image_tag("abot-demo.gif", width: "100%")
+      = image_tag("channel-feedback.png", width: "100%")
+      = image_tag("direct-feedback.png", width: "100%")
+    .col-lg-1.col-sm-0
+  .row
+    .col-lg-2
+    .col-lg-8
+      h3 Privacy policy
+      p.text-justify App collects minimum amount of user data needed for it to function properly.
+      p.text-justify All the sensitive information like messages content, user nicknames and ids are filtered out from the logs and not stored in the database. Even if you wanted to pay us a lot for it we could not track who sent that message ;)
+      p.text-justify
+        span> You don't have to trust my word on that. App is
+        b> Open Source
+        span> and you can check the codes out yourself
+        a.no-underline> href="https://github.com/pawurb/abot" target="_blank" here.
+      h3 Disclaimer
+      p.text-justify
+          span> If you are on a Free or Standard Slack plan your anonymity is guaranteed. Teams with
+          a.no-underline> href="https://get.slack.help/hc/en-us/articles/204897248-Guide-to-Slack-data-exports" target="_blank" Compliance Exports
+          span enabled (optional Slack Plus Plan feature) would be able to determine sender of the message. Messages sent prior to activating Compliance Exports are not included into it so everything you send before remains anonymous. Sorry, but there is no way to hack around it ¯\_(ツ)_/¯
+      h3 Support email
+      p p.urbanek89 at gmail.com
+
+    .col-lg-2
+  footer.footer
+    p
+      span> &copy; Paweł Urbanek
+      = Time.current.year

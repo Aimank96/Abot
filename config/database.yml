@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: feedback_bot_development
+
+test:
+  <<: *default
+  database: feedback_bot_test
+
+production:
+  <<: *default
+  database: feedback_bot_production
+  username: feedback_bot
+  password: <%= ENV['FEEDBACK_BOT_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: feedback_bot_staging
+  username: feedback_bot
+  password: <%= ENV['FEEDBACK_BOT_DATABASE_PASSWORD'] %>
