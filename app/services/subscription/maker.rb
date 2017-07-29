@@ -10,10 +10,10 @@ class Subscription::Maker
     )
 
     if result.success?
-      user = User.find(params.fetch(:user_id))
+      payer = Payer.find(params.fetch(:user_id))
       Subscription.create!(
-        team_id: user.team_id,
-        payer_id: user.id,
+        team_id: payer.team_id,
+        payer_id: payer.id,
         amount_paid: Subscription::PRICE,
         braintree_identifier: result.transaction.id,
         payer_first_name: params.fetch(:first_name),

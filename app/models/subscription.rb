@@ -4,5 +4,5 @@ class Subscription < ApplicationRecord
   PRICE_READABLE = "#{PRICE}€"
 
   belongs_to :team
-  belongs_to :payer, class_name: "User"
+  belongs_to :payer
 end

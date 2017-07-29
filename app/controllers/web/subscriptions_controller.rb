@@ -25,7 +25,7 @@ class Web::SubscriptionsController < Web::BaseController
     )
 
     if payment_successful
-      NotifierJob.perform_later("$$$ New purchase! #{User.find(user_id).team.name} ")
+      NotifierJob.perform_later("$$$ New purchase! #{Payer.find(user_id).team.name} ")
       nonce = params.fetch(:nonce)
       render json: {
         status: "success"

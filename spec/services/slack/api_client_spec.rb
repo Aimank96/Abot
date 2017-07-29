@@ -35,7 +35,7 @@ describe Slack::ApiClient do
           user_access_token: 'user_access_token',
           bot_access_token: 'bot_access_token',
           team_slack_id: 'team_slack_id',
-          user_slack_id: 'user_slack_id',
+          user_slack_id: 'payer_slack_id',
           team_name: 'team_name',
           bot_slack_id: 'bot_slack_id'
         }

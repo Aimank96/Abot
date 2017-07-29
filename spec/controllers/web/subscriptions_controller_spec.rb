@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Web::SubscriptionsController do
-  let(:user) do
-    create(:user)
+  let(:payer) do
+    create(:payer)
   end
 
   describe "#new" do
@@ -24,7 +24,7 @@ describe Web::SubscriptionsController do
       let(:params) do
         {
           nonce: "i_am_a_correct_nonce",
-          user_id: user.id,
+          user_id: payer.id,
           first_name: "Janusz",
           last_name: "Kowalski",
           address: "Targowa 45, 92018 Lodz, Poland",
@@ -51,7 +51,7 @@ describe Web::SubscriptionsController do
       let(:params) do
         {
           nonce: "i_am_a_correct_nonce",
-          user_id: user.id,
+          user_id: payer.id,
           first_name: "Janusz",
           last_name: "Kowalski",
           address: "Targowa 45, 92018 Lodz, Poland",

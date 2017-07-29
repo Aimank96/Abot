@@ -2,7 +2,7 @@ class Web::SessionsController < Web::BaseController
   protect_from_forgery with: :null_session
 
   def create
-    if user = Slack::UserLogin.call(params.fetch('code'))
+    if user = Slack::PayerLogin.call(params.fetch('code'))
       session[:current_user_id] = user.id
       flash[:success] = "You succesfully added Abot to your Slack team!"
     else

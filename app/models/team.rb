@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
-  has_many :users
   has_one :subscription
+  has_one :payer
 
   def has_access?
     subscription.present?

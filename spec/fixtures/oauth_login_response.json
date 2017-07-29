@@ -2,7 +2,7 @@
   "ok": true,
   "access_token": "user_access_token",
   "scope": "identify,bot,commands,incoming-webhook",
-  "user_id": "user_slack_id",
+  "user_id": "payer_slack_id",
   "team_name": "team_name",
   "team_id": "team_slack_id",
   "bot": {

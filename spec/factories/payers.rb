@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user do
+  factory :payer do
     slack_id { SecureRandom.hex(5) }
     association :team
   end

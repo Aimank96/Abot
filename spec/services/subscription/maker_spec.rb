@@ -7,14 +7,14 @@ describe Subscription::Maker do
     end
 
     let!(:team) do
-      create(:user).team
+      create(:payer).team
     end
 
     context "everything is awesome" do
       let(:params) do
         {
           nonce: "3a5eeda2-b73b-038e-2f37-edfb89371c63",
-          user_id: team.users.first.id,
+          user_id: team.payer.id,
           first_name: "Janusz",
           last_name: "Kowalski",
           address: "Targowa 45, 92018 Lodz, Poland",
@@ -40,7 +40,7 @@ describe Subscription::Maker do
         VCR.use_cassette("braintree_successful_payment") do
           subject
           new_subscription = Subscription.last
-          expect(new_subscription.payer).to eq team.users.first
+          expect(new_subscription.payer).to eq team.payer
           expect(new_subscription.team).to eq team
           expect(new_subscription.braintree_identifier).not_to be_nil
           expect(new_subscription.payer_first_name).not_to be_nil

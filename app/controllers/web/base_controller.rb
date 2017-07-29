@@ -43,10 +43,10 @@ class Web::BaseController < ApplicationController
 
   def authenticate
     if Rails.env.development?
-      @current_user ||= User.find_by!(slack_id: 'develop')
+      @current_user ||= Payer.find_by!(slack_id: 'develop')
     else
       @current_user ||= session[:current_user_id] &&
-        User.find_by(id: session[:current_user_id])
+        Payer.find_by(id: session[:current_user_id])
     end
 
     @current_user

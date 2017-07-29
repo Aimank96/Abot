@@ -1,4 +1,4 @@
-class Slack::UserLogin < SmartInit::Base
+class Slack::PayerLogin < SmartInit::Base
   initialize_with :slack_api_client
 
   def self.call(access_code)
@@ -8,15 +8,15 @@ class Slack::UserLogin < SmartInit::Base
   def call(access_code)
     @data = slack_api_client.get_oauth_data(access_code)
 
-    if user && team
+    if payer && team
       update_team(team)
-      user
+      payer
     elsif team
       update_team(team)
-      create_user(team.id)
+      create_payer(team.id)
     else
       new_team = create_team
-      create_user(new_team.id)
+      create_payer(new_team.id)
     end
   rescue ActiveRecord::RecordInvalid => e
     ExceptionNotifier.notify_exception(e)
@@ -25,8 +25,8 @@ class Slack::UserLogin < SmartInit::Base
 
   private
 
-  def user
-    @_user ||= User.find_by(slack_id: @data.fetch(:user_slack_id))
+  def payer
+    @_payer ||= Payer.find_by(slack_id: @data.fetch(:user_slack_id))
   end
 
   def team
@@ -49,7 +49,7 @@ class Slack::UserLogin < SmartInit::Base
 
     if Team.count % 5 == 0
       NotifierJob.perform_later(
-        "New team: #{new_team.name}, 'Add to Slack'. Total teams: #{Team.count}, Total users: #{User.count}"
+        "New team: #{new_team.name}, 'Add to Slack'. Total teams: #{Team.count}"
       )
     end
 
@@ -65,13 +65,13 @@ class Slack::UserLogin < SmartInit::Base
     new_team
   end
 
-  def create_user(team_id)
-    new_user = User.create!(
+  def create_payer(team_id)
+    new_payer = Payer.create!(
       slack_id: @data.fetch(:user_slack_id),
       team_id: team_id
     )
 
-    new_user
+    new_payer
   end
 
   def welcome_message_content
