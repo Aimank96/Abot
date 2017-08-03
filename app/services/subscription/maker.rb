@@ -6,7 +6,10 @@ class Subscription::Maker
   def call(params)
     result = Braintree::Transaction.sale(
       payment_method_nonce: params.fetch(:nonce),
-      amount: Subscription::PRICE
+      amount: Subscription::PRICE,
+      options: {
+        submit_for_settlement: true
+      }
     )
 
     if result.success?
