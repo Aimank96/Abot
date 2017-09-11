@@ -10,5 +10,8 @@ html
     = Gon::Base.render_data
 
   body
+    github class="octo-right"
+      a href="https://github.com/pawurb/abot" target="_blank"
+        image src="assets/github.svg"
     .container.js-data data-controller="#{@controller}" data-action="#{@action}"
       = yield
